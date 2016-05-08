@@ -18,11 +18,8 @@ import {AppState} from './app.service';
   encapsulation: ViewEncapsulation.None,
   templateUrl: '/app/app.component.html'
 })
-export class App {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
+export class AppComponent {
   loading = false;
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
 
   constructor(
     public appState: AppState) {
