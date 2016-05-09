@@ -1,8 +1,7 @@
 
 import { Component, OnInit, Output, OnChanges, Input, EventEmitter } from '@angular/core';
-
 import { Http, Response } from '@angular/http';
-
+import { IPost } from './IPost';
 
 @Component({
     moduleId: module.id,
@@ -12,11 +11,13 @@ import { Http, Response } from '@angular/http';
 export class PostsComponent implements OnInit, OnChanges {
     constructor(private http: Http) { }
 
-    @Output() select: EventEmitter<any> = new EventEmitter();
+    @Output()
+    select: EventEmitter<any> = new EventEmitter();
 
-    @Input() filter: string;
+    @Input()
+    filter: string;
 
-    posts: any[];
+    posts: IPost[];
 
     ngOnInit() { 
         
@@ -31,8 +32,8 @@ export class PostsComponent implements OnInit, OnChanges {
         this.http.get('/api/articles.json')
         .map( (res: Response) => res.json())
         .subscribe( (obj: any[]) => {
-            this.posts = obj.filter( (value) => {
-                return value.title.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0;
+            this.posts = obj.filter( (post: IPost) => {
+                return post.title.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0;
             } );
         });
     }
