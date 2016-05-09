@@ -6,6 +6,8 @@ import {RouteConfig, Router} from '@angular/router-deprecated';
 
 import {AppState} from './app.service';
 
+import { HeaderComponent } from './header.component';
+import { PostsComponent } from './posts.component';
 /*
  * App Component
  * Top Level Component
@@ -14,13 +16,15 @@ import {AppState} from './app.service';
   selector: 'app',
   pipes: [ ],
   providers: [ ],
-  directives: [ ],
+  directives: [ HeaderComponent, PostsComponent ],
   encapsulation: ViewEncapsulation.None,
   templateUrl: '/app/app.component.html'
 })
 export class AppComponent {
   loading = false;
 
+  keyword: string;
+  
   constructor(
     public appState: AppState) {
 
@@ -28,6 +32,12 @@ export class AppComponent {
 
   ngOnInit() {
     console.log('Initial App State', this.appState.state);
+  }
+  
+  selectedPost: any;
+  
+  onSelectPost(post) {
+    this.selectedPost = post;
   }
 
 }
