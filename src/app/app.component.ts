@@ -5,6 +5,8 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {RouteConfig, Router} from '@angular/router-deprecated';
 
 import {AppState} from './app.service';
+import { PheaderComponent } from './pheader.component';
+import { PostsComponent } from './posts.component';
 
 /*
  * App Component
@@ -14,13 +16,13 @@ import {AppState} from './app.service';
   selector: 'app',
   pipes: [ ],
   providers: [ ],
-  directives: [ ],
+  directives: [ PheaderComponent, PostsComponent ],
   encapsulation: ViewEncapsulation.None,
   templateUrl: '/app/app.component.html'
 })
 export class AppComponent {
   loading = false;
-
+  keyword: string = "";
   constructor(
     public appState: AppState) {
 
